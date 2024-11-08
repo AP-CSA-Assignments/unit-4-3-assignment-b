@@ -1,4 +1,4 @@
-# unit-4-3-assignment
+# unit-4-3-assignment-b
 
 ## Git Config
 ```
@@ -22,115 +22,48 @@ After you compile the shape classes, you only need to compile and run `Main.java
 
 # Instructions  
 
-## Problem 1
-Use a for loop to print the odd numbers between 1 and 25 inclusive.
+You will write a method named `isPrime` that returns a boolean, and that takes in a positive number and displays whether it is prime or not.  A number is prime if it is only divisible by 1 and itself.  Note that 1 is not prime.  Assume that the input is always greater than 0.
 
-## Problem 2
-Use a for loop to print all of the numbers from 17 to 73 (inclusive) with 10 numbers on each line (the last line will have less than 10 numbers). Print one space between each number.
+**Hint:** Assume the number is prime.  If you find out that it isn't prime, then set your answer to false.
+**Alternative Hint:** You can take advantage of the fact that the `return` statement will end the execution of your code to return the correct value of `true` or `false` when you find out whether or not a number is prime or not.
 
-Hint - think about what values would be at the end of each line and what they have in common (think about modular division). You can then add an if block inside your loop which prints a new line when one of these numbers is encountered.
+To help you, I highly suggest you test a few numbers, and do it "manually" as a "human being" to help you figure out how you would create an algorithm that you would program as Java code.
 
-## Problem 3
-Input an int between 0 and 50 and print the numbers between it and 50, including the number itself and the number 50. If the number is less than or equal to 0, or greater than or equal to 50, print "error". Print 5 numbers per line. The last line may or may not have 5 numbers.
-
-Hint - use modular division to determine where you need to add a line break.
-
-Sample Run 1:
-```
-Enter a number between 0 and 50:
-23
-23 24 25 26 27 
-28 29 30 31 32 
-33 34 35 36 37 
-38 39 40 41 42 
-43 44 45 46 47 
-48 49 50
-```
-Sample Run 2:
-```
-Enter a number between 0 and 50:
--2
-error
-```
-
-## Problem 4
-Input an int greater than 0 and print every multiple of 3 between it and 0 inclusive in descending order. If the number is not greater than 0 print "error". Print all numbers on one line with single spaces in between.
-
-Hint - use modular division to determine which numbers to print (you could check each number or just find the nearest multiple of 3 below/equal to the input and proceed from there).
-
-Sample Run 1:
-```
-Enter a positive integer:
-25
-24 21 18 15 12 9 6 3 0 
-```
-Sample Run 2:
-```
-Enter a positive integer:
--2
-error
-```
+| Input | Expected Output |
+| --- | ---|
+| 1 | `false` |
+| 2 | `true` |
+| 3 | `true` |
+| 4 | `false` |
+| 5 | `true` |
+| 8675309| `true` |
 
 ## Sample Solutions
 ```java
-// Problem 1
-for (int i = 1; i <= 25; i+=2)
+public static boolean isPrime(int N)
 {
-  System.out.println(i);
-}
-
-// Problem 2
-for (int i = 17; i <= 73; i++)
-{
-  System.out.print(i + " ");
-
-  if (i % 10 == 6)
+  for (int i = 2; i < N; i++)
   {
-    System.out.println();
-  }
-}
-
-// Problem 3
-Scanner sc = new Scanner(System.in);
-int n;
-
-System.out.println("Enter a number between 0 and 50:");
-n = sc.nextInt();
-
-if (!(0 <= n && n <= 50))
-{
-  System.out.println("error");
-}
-else
-{
-  for (int i = n; i <= 50; i++)
-  {
-    System.out.print(i + " ");
-    if (i % 5 == (n + 4) % 5)
+    if (N % i == 0)
     {
-      System.out.println();
+      return false;
     }
   }
+  return true;
 }
 
-// Problem 4
-Scanner sc = new Scanner(System.in);
-int n;
+// Alternative solution
 
-System.out.println("Enter a positive integer:");
-n = sc.nextInt();
-if (n > 0)
+public static boolean isPrime(int N)
 {
-  // Optional - decrease n to the nearest multiple of 3
-  n -= (n % 3);	// Equivalent to n = n - (n % 3)
-
-  for (int i = n; i >= 0; i -= 3)
+  boolean output = true;
+  for (int i = 2; i < N; i++)
   {
-    System.out.print(i + " ");
+    if (N % i == 0)
+    {
+      output = false;
+    }
   }
-}
-else
-{
-  System.out.println("error");
+  return output;
 }
 ```

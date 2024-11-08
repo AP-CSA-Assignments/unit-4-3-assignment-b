@@ -42,6 +42,11 @@ To help you, I highly suggest you test a few numbers, and do it "manually" as a 
 ```java
 public static boolean isPrime(int N)
 {
+  if (N == 1)
+  {
+    return false;
+  }
+
   for (int i = 2; i < N; i++)
   {
     if (N % i == 0)
@@ -63,6 +68,11 @@ public static boolean isPrime(int N)
     {
       output = false;
     }
+  }
+
+  if (N == 1)
+  {
+    output = false;
   }
   return output;
 }
